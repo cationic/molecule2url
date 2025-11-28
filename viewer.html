@@ -7385,6 +7385,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 const pythonSettings = { "bondThreshold": 1.2, "bondThickness": 0.1, "atomSize": 0.4, "animationSpeed": 30, "forceScale": 1.0, "backgroundColor": "#1f2937", "style": "Cartoon", "showCell": true, "showBond": true, "showShadow": false, "showEnergyPlot": false, "showForces": false, "viewMode": "Perspective", "rotationMode": "TrackBall", "selectionMode": "Lasso" };
                 Object.assign(settings, pythonSettings);
                 console.log('Applied settings:', settings);
+                updateUIFromSettings();
 
                 // Wait for renderer to be initialized
                 function trySetData() {
@@ -7530,7 +7531,19 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 }
                 trySetData();
             }
-            initData();
+            function updateUIFromSettings() {
+                const bondThresholdSlider = document.getElementById('bond-threshold');
+                if (bondThresholdSlider) {
+                    bondThresholdSlider.value = settings.bondThreshold;
+                    const valueEl = document.getElementById('bond-threshold-value');
+                    if (valueEl) valueEl.textContent = settings.bondThreshold;
+                }
+                // Add other UI updates here if needed
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                initData();
+            });
         })();
     </script>
     </body>
