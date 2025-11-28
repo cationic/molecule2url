@@ -2495,13 +2495,11 @@
                             // Exclude existing bonds (covalent O-H, N-H, F-H)
                             const bondKey = Math.min(i, j) + '_' + Math.max(i, j);
                             if (!bondsSet.has(bondKey)) {
-                                // Check if hydrogen is bonded to N, O, or F (polar hydrogen)
-                                if (isHydrogenBondedToNOF(hydrogenIdx, adjacencyList)) {
-                                    // Check connectivity distance - only include if atoms are 3+ bonds apart
-                                    const connectivityDist = getMinConnectivityDistance(i, j, adjacencyList);
-                                    if (connectivityDist >= 3) {
-                                        hydrogenBonds.push([i, j]);
-                                    }
+                                // Allow all H atoms to form H-bonds (including C-H...O)
+                                // Check connectivity distance - only include if atoms are 3+ bonds apart
+                                const connectivityDist = getMinConnectivityDistance(i, j, adjacencyList);
+                                if (connectivityDist >= 3) {
+                                    hydrogenBonds.push([i, j]);
                                 }
                             }
                         }
