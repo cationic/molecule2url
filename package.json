@@ -1,0 +1,16 @@
+{
+  "name": "molecule2url",
+  "version": "1.0.0",
+  "description": "Static site generator for molecular visualizations",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "npx http-server .",
+    "dev": "npm run serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
